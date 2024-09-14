@@ -11,7 +11,7 @@ from .views import (
 urlpatterns = [
     # User URLs
     path('add-user/', CustomUserListCreateView.as_view(), name='customuser-list-create'),
-    path('customusers/<int:pk>/', CustomUserRetrieveUpdateDestroyView.as_view(), name='customuser-detail'),
+    path('user/<str:pk>/', CustomUserRetrieveUpdateDestroyView.as_view(), name='customuser-detail'),
 
     # ChatMessage URLs
     path('chat-messages/', ChatMessageListCreateView.as_view(), name='chatmessage-list-create'),

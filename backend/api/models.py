@@ -1,7 +1,7 @@
 from django.db import models
 
 class CustomUser(models.Model):
-    email = models.EmailField(unique=True)
+    email = models.EmailField(primary_key=True)
     full_name = models.CharField(max_length=255)
     image = models.URLField(max_length=255, blank=True, null=True)
 
@@ -18,22 +18,22 @@ class Grave(models.Model):
     owner = models.EmailField()
 
 class GraveImages(models.Model):
-    grave = models.ForeignKey(Grave, on_delete=models.CASCADE)
+    grave = models.IntegerField()
     image = models.URLField(max_length=255)
     owner = models.EmailField()
 
 class GraveVisitors(models.Model):
-    grave = models.ForeignKey(Grave, on_delete=models.CASCADE)
-    visitor = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    grave = models.IntegerField()
+    visitor = models.EmailField()
     message = models.TextField()
     gift = models.URLField(max_length=255, blank=True, null=True)
 
 class ChatMessage(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='chat_messages')
-    grave = models.ForeignKey(Grave, on_delete=models.CASCADE)
+    user = models.EmailField()
+    grave = models.IntegerField()
 
 class Messages(models.Model):
-    message = models.ForeignKey(ChatMessage, on_delete=models.CASCADE)
+    message = models.IntegerField()
     user_msg = models.TextField()
     ai_msg = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
