@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-ks_htcsr77-p7(1&#p)^v(=bp_w!-r^%xbu2kzuizz8vzmkp@2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'api',
+    'rest_framework',
+    'corsheaders',
+    'django_celery_results',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +52,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = "e_graveyard.urls"
@@ -121,3 +127,27 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+'''
+Our custom settings starts here
+
+'''
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
+
+'''
+        window based redis integration 
+''' 
+# CELERY_BROKER_URL = 'redis://127.0.0.1:6379'  # yo broker url ho, i mean redis ko
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_WORKER_LOG_LEVEL = "DEBUG"
+# CELERY_RESULT_BACKEND = 'django-db' 
+# CELERY_TIMEZONE = 'America/Los_Angeles'
+# CELERY_ENABLE_UTC = True
+
+CELERY_BROKER_URL = "redis://localhost:6379/0"
+CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
