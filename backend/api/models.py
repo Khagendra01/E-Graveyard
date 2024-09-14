@@ -15,12 +15,12 @@ class Grave(models.Model):
     dob = models.DateTimeField()
     dod = models.DateTimeField(blank=True, null=True)
     voice_id = models.CharField(max_length=255, blank=True, null=True)
-    owner = models.ForeignKey(CustomUser, models.DO_NOTHING)
+    owner = models.EmailField()
 
 class GraveImages(models.Model):
     grave = models.ForeignKey(Grave, on_delete=models.CASCADE)
     image = models.URLField(max_length=255)
-    owner = models.ForeignKey(CustomUser, models.DO_NOTHING)
+    owner = models.EmailField()
 
 class GraveVisitors(models.Model):
     grave = models.ForeignKey(Grave, on_delete=models.CASCADE)
