@@ -51,7 +51,11 @@ export default function People() {
           </div>
         </div>
       </div>
-      <ChatModal isOpen={isChatOpen} onClose={closeChat} />
+      <ChatModal
+        personName="Steve Jobs"
+        isOpen={isChatOpen}
+        onClose={closeChat}
+      />
     </BgViewWrapper>
   );
 }

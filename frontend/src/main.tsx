@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import People from "./routes/people/[id]";
 import { API_URL } from "./Constants";
+import CreatePerson from "./routes/create";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
     // loader: async ({ params }) => {
     //   return fetch(`${API_URL}/api/people/${params.id}`);
     // },
+  },
+  {
+    path: "create",
+    element: <CreatePerson />,
   },
 ]);
 

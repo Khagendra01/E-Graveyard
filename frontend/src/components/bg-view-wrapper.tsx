@@ -7,7 +7,7 @@ export default function BgViewWrapper({
 }) {
   return (
     <div className="relative min-h-screen w-screen">
-      <div className="absolute inset-0 bg-hero bg-no-repeat bg-cover"></div>
+      <div className="absolute inset-0 bg-hero bg-no-repeat bg-cover bg-fixed"></div>
       <div className="absolute inset-0 bg-black opacity-70"></div>
       {children}
     </div>

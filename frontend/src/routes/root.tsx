@@ -49,10 +49,30 @@ function Root() {
             </p>
             {isAuthenticated && !isLoading ? (
               <footer className="flex justify-center gap-6 flex-wrap mt-16">
-                <Cemetery imageName="1" id="steve-jobs" name="Steve Jobs" />
-                <Cemetery imageName="2" id="steve-jobs" name="Steve Jobs" />
-                <Cemetery imageName="3" id="steve-jobs" name="Steve Jobs" />
-                <Cemetery imageName="4" id="steve-jobs" name="Steve Jobs" />
+                <Cemetery
+                  imageName="1"
+                  personImage="steve-jobs.webp"
+                  id="steve-jobs"
+                  name="Steve Jobs"
+                />
+                <Cemetery
+                  imageName="2"
+                  personImage="steve-jobs.webp"
+                  id="steve-jobs"
+                  name="Steve Jobs"
+                />
+                <Cemetery
+                  personImage="steve-jobs.webp"
+                  imageName="3"
+                  id="steve-jobs"
+                  name="Steve Jobs"
+                />
+                <Cemetery
+                  personImage="plus"
+                  imageName="4"
+                  id="create"
+                  name="Add Person"
+                />
               </footer>
             ) : isLoading ? (
               <p className="text-lg">Loading...</p>
