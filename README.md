@@ -1,2 +1,11 @@
-# E-Graveyard
-This repository is created for John Hopkins Hackathon
+# E-Graveyard: Whaere your loved ones are remembered forever!
+
+## Description
+
+## Features
+
+## Difficulties Faced
+
+## Tech Stack
+
+## Installation
