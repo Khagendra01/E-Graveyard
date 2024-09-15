@@ -8,26 +8,29 @@ import DialogModalWrapper from "@/components/dialog-modal-wrapper";
 import { DialogDescription, DialogFooter, DialogTitle } from "./ui/dialog";
 import { useAuth0 } from "@auth0/auth0-react";
 import { API_URL } from "@/Constants";
-import { ElevenLabsClient, ElevenLabs } from "elevenlabs";
+// import { ElevenLabsClient, ElevenLabs } from "elevenlabs";
 import axios from "axios";
 
 interface ChatModalProps {
   isOpen: boolean;
   onClose: () => void;
   personName: string;
+  voice_id: string;
+  grave_id: string;
 }
 
 const ChatModal: React.FC<ChatModalProps> = ({
   isOpen,
   onClose,
   personName,
+  voice_id,
+  grave_id,
 }) => {
   const [messages, setMessages] = useState([
     { sender: "person", text: "Hello! How can I help you today?" },
   ]);
   const [newMessage, setNewMessage] = useState("");
   const [chatId, setChatId] = useState("");
-  const [voiceId, setVoiceId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [audioStatus, setAudioStatus] = useState([
     { isLoading: false, id: "" },
@@ -35,7 +38,6 @@ const ChatModal: React.FC<ChatModalProps> = ({
   const { user, isAuthenticated, isLoading: isAuthLoading } = useAuth0();
 
   const XI_API_KEY = import.meta.env.VITE_XI_API_KEY;
-  const VOICE_ID = "6AGekT2sbNEtCcYlA5Kx";
 
   const generateVoice = async (id: string, text: string) => {
     setAudioStatus((prev) => [...prev, { isLoading: true, id: id }]);
@@ -57,7 +59,7 @@ const ChatModal: React.FC<ChatModalProps> = ({
 
     try {
       const response = await axios.post(
-        `${baseUrl}/6AGekT2sbNEtCcYlA5Kx`,
+        `${baseUrl}/${voice_id}`,
         requestBody,
         {
           headers,
@@ -108,7 +110,7 @@ const ChatModal: React.FC<ChatModalProps> = ({
           },
           body: JSON.stringify({
             user: user?.email,
-            grave: 42,
+            grave: Number(grave_id),
           }),
         });
 
@@ -121,12 +123,12 @@ const ChatModal: React.FC<ChatModalProps> = ({
         currentChatId = chatDataJson.id;
         setChatId(currentChatId);
 
-        const voiceData = await fetch(API_URL + "/api/get-voice/?grave_id=20");
-        if (!voiceData.ok) {
-          throw new Error("Failed to get voice");
-        }
-        const voiceDataJson = await voiceData.json();
-        setVoiceId(voiceDataJson.voice_id);
+        // const voiceData = await fetch(API_URL + `/api/get-voice/?grave_id=${grave_id}`);
+        // if (!voiceData.ok) {
+        //   throw new Error("Failed to get voice");
+        // }
+        // const voiceDataJson = await voiceData.json();
+        // setVoiceId(voiceDataJson.voice_id);
       }
 
       // Send user message to AI

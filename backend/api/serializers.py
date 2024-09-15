@@ -11,7 +11,7 @@ class GraveSerializer(serializers.ModelSerializer):
         model = Grave
         fields = [
             'id', 'name', 'surname', 'other_Name', 'gender', 'is_alive',
-            'content', 'dob', 'dod', 'voice_id', 'owner'
+            'content', 'dob', 'dod', 'voice_id', 'owner', 'image'
         ]
 
 class GraveImagesSerializer(serializers.ModelSerializer):

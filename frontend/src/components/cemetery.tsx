@@ -24,7 +24,7 @@ export default function Cemetery({
         </div>
       ) : (
         <img
-          src={`/people/${personImage}`}
+          src={personImage}
           alt=""
           className="absolute rounded-full w-24 h-24 object-cover bottom-8 left-1/2 transform -translate-x-1/2"
         />

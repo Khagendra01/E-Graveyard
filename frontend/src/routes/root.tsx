@@ -11,6 +11,18 @@ function Root() {
   const { loginWithRedirect } = useAuth0();
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
     useAuth0();
+  const [pageData, setPageData] = useState([])
+
+  useEffect(() => {
+    async function getPageData() {
+      const data = await fetch(API_URL+'/api/graves/')
+      const resData = await data.json()
+      setPageData(resData)
+      console.log({resData})
+    }
+
+    getPageData()
+  }, [])
 
   useEffect(() => {
     const addUserToDatabase = async () => {
@@ -41,7 +53,7 @@ function Root() {
   return (
     <>
       <BgViewWrapper>
-        <div className="relative z-10 flex items-center justify-center min-h-screen">
+        <div className="relative z-10 flex items-center justify-center min-h-screen p-12">
           <main className="text-white text-center">
             <h1 className="font-bold text-5xl text-white">
               Welcome to E-Graveyard! <AudioPlayer src="/track.mp3" />
@@ -51,24 +63,17 @@ function Root() {
             </p>
             {isAuthenticated && !isLoading ? (
               <footer className="flex justify-center gap-6 flex-wrap mt-16">
-                <Cemetery
+                {
+                  pageData.map(data => (
+                    <Cemetery
                   imageName="1"
-                  personImage="steve-jobs.webp"
-                  id="steve-jobs"
-                  name="Steve Jobs"
+                  personImage={data.image}
+                  id={data.id}
+                  name={data.name + ' ' + data.surname}
                 />
-                <Cemetery
-                  imageName="2"
-                  personImage="steve-jobs.webp"
-                  id="steve-jobs"
-                  name="Steve Jobs"
-                />
-                <Cemetery
-                  personImage="steve-jobs.webp"
-                  imageName="3"
-                  id="steve-jobs"
-                  name="Steve Jobs"
-                />
+                  ))
+                }
+                
                 <Cemetery
                   personImage="plus"
                   imageName="4"
