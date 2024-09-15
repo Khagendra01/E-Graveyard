@@ -1,14 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BgViewWrapper from "@/components/bg-view-wrapper";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ChatBubbleIcon } from "@radix-ui/react-icons";
 import { ArrowLeft } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import ChatModal from "@/components/chat-modal";
+import { API_URL } from "@/Constants";
+import axios from "axios";
 
 export default function People() {
   const { id } = useParams<{ id: string }>();
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const data = useLoaderData();
+  const [pageData, setPageData] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const options = {
+        method: "GET",
+        url: "https://dc5d-192-12-14-1.ngrok-free.app/api/graves/43/?format=json",
+        headers: { "content-type": "application/json" },
+      };
+
+      try {
+        const { data } = await axios.request(options);
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
 
   const openChat = () => setIsChatOpen(true);
   const closeChat = () => setIsChatOpen(false);

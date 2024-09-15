@@ -16,9 +16,13 @@ const router = createBrowserRouter([
   {
     path: "people/:id",
     element: <People />,
-    // loader: async ({ params }) => {
-    //   return fetch(`${API_URL}/api/people/${params.id}`);
-    // },
+    loader: async ({ params }) => {
+      try {
+        return { data: "test" };
+      } catch (error) {
+        throw new Error(`Error fetching data: ${error}`);
+      }
+    },
   },
   {
     path: "create",

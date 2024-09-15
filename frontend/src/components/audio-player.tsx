@@ -15,6 +15,12 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, volume = 0.1 }) => {
     audioElement.volume = volume;
     setAudio(audioElement);
 
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
+
+    audioElement.addEventListener("play", handlePlay);
+    audioElement.addEventListener("pause", handlePause);
+
     // Play the audio by default when the component mounts
     audioElement.play().catch((error) => {
       console.error("Error playing audio:", error);
@@ -22,6 +28,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, volume = 0.1 }) => {
 
     return () => {
       audioElement.pause();
+      audioElement.removeEventListener("play", handlePlay);
+      audioElement.removeEventListener("pause", handlePause);
     };
   }, [src, volume]);
 
@@ -34,7 +42,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, volume = 0.1 }) => {
           console.error("Error playing audio:", error);
         });
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
