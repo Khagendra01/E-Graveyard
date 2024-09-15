@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Cemetery from "../components/cemetery";
 import { Button } from "../components/ui/button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { API_URL } from "../Constants";
 import BgViewWrapper from "@/components/bg-view-wrapper";
+import { SpeakerLoudIcon, SpeakerOffIcon } from "@radix-ui/react-icons";
+import AudioPlayer from "@/components/audio-player";
 
 function Root() {
   const { loginWithRedirect } = useAuth0();
@@ -42,7 +44,7 @@ function Root() {
         <div className="relative z-10 flex items-center justify-center min-h-screen">
           <main className="text-white text-center">
             <h1 className="font-bold text-5xl text-white">
-              Welcome to E-Graveyard!
+              Welcome to E-Graveyard! <AudioPlayer src="/track.mp3" />
             </h1>
             <p className="mt-4 mb-3 text-2xl">
               Where your loved ones are remembered forever.

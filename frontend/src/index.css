@@ -63,4 +63,7 @@
   body {
     @apply bg-background text-foreground;
   }
+  input[type="file"].change-to-white::file-selector-button {
+    color: white;
+  }
 }

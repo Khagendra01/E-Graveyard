@@ -16,7 +16,7 @@ const DialogModalWrapper: React.FC<DialogModalWrapperProps> = ({
 }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[550px] bg-gray-900 text-white border border-gray-500">
+      <DialogContent className="sm:max-w-[900px] max-h-[95%] overflow-y-auto bg-gray-900 text-white border border-gray-500">
         <DialogHeader>{dialogHeaderContent}</DialogHeader>
         {children}
       </DialogContent>
