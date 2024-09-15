@@ -102,15 +102,18 @@ export default function CreatePerson() {
     const voiceUrl = await uploadToS3(voiceFile);
 
     console.log({ voiceUrl });
+    const fetch_voic = {
+      voice_url: voiceUrl,
+    }
     const voiceReq = await fetch(API_URL + "/api/audio-files/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        voice_url: voiceUrl,
-      }),
+      body: JSON.stringify(fetch_voic),
     });
     const voiceRes = await voiceReq.json();
     const {voice_id} = voiceRes;
+
+    console.log({voiceRes})
 
     if (!file) {
       setSubmissionStatus("Please upload an image.");

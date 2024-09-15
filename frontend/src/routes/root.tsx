@@ -4,7 +4,6 @@ import { Button } from "../components/ui/button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { API_URL } from "../Constants";
 import BgViewWrapper from "@/components/bg-view-wrapper";
-import { SpeakerLoudIcon, SpeakerOffIcon } from "@radix-ui/react-icons";
 import AudioPlayer from "@/components/audio-player";
 
 function Root() {
@@ -70,6 +69,7 @@ function Root() {
                   personImage={data.image}
                   id={data.id}
                   name={data.name + ' ' + data.surname}
+                  is_alive={data.is_alive}
                 />
                   ))
                 }

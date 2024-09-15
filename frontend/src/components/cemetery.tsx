@@ -6,18 +6,20 @@ export default function Cemetery({
   id,
   name,
   personImage,
+  is_alive
 }: {
   imageName: string;
   id: string;
   name: string;
   personImage: string;
+  is_alive: boolean;
 }) {
   return (
     <Link
       to={id == "create" ? "/create" : `/people/${id}`}
       className="relative"
     >
-      <img className="w-64" src={`/cemetery/${imageName}.png`} alt="" />
+      {is_alive ? (<img className="w-64" src={`/earth.png`} alt="" />) : (<img className="w-64" src={`/cemetery/${imageName}.png`} alt="" />)}
       {personImage === "plus" ? (
         <div className="absolute rounded-full w-24 h-24 bg-white text-black bottom-8 left-1/2 transform -translate-x-1/2 grid place-items-center">
           <PlusIcon className="text-black w-8 h-8" />

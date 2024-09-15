@@ -55,7 +55,7 @@ export default function People() {
           <div className="max-w-lg">
             <div className="space-y-3">
               <h1 className="text-5xl font-bold text-white">{pageData.name} {pageData.surname}</h1>
-              <p className="text-2xl text-white">{new Date(pageData.dob).getFullYear()} - {new Date(pageData.dod).getFullYear()}</p>
+              <p className="text-2xl text-white">{new Date(pageData.dob).getFullYear()} - {pageData.is_alive ? "Present" : new Date(pageData.dod).getFullYear()}</p>
               <p className="text-white">
                {pageData.content.slice(0,400)}...
               </p>

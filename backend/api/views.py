@@ -173,7 +173,7 @@ class MessagesRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
 class VoiceFilesView(APIView):
     def post(self, request):  
-        voice_url =request.data.get('voice_url', None)
+        voice_url = request.data.get('voice_url', None)
         voice_id = voice_clone(voice_url)
 
         return Response({'voice_id': voice_id}, status=status.HTTP_200_OK)
